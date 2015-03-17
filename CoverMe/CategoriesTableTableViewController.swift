@@ -28,6 +28,19 @@ class CategoriesTableTableViewController: UITableViewController {
         self.categories.append(eighties)
         self.categories.append(nineties)
         self.categories.append(thousands)
+        
+        if let path = NSBundle.mainBundle().pathForResource("categories", ofType: "json") {
+            if let data = NSData(contentsOfMappedFile: path) {
+                let json = JSON(data: data, options: NSJSONReadingOptions.AllowFragments, error: nil)
+                println("jsonData:\(json)")
+            }
+        }
+        /*
+        let path = NSBundle.mainBundle().pathForResource("categories", ofType: "json")
+        let jsonData = NSData.dataWithContentsOfFile(path, options: .DataReadingMappedIfSafe, error: nil)
+        var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
+        var persons : NSArray = jsonResult["category"] as NSArray */
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
