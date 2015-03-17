@@ -32,7 +32,10 @@ class CategoriesTableTableViewController: UITableViewController {
         if let path = NSBundle.mainBundle().pathForResource("categories", ofType: "json") {
             if let data = NSData(contentsOfMappedFile: path) {
                 let json = JSON(data: data, options: NSJSONReadingOptions.AllowFragments, error: nil)
-                println("jsonData:\(json)")
+                println("jason: \(json)")
+                if let categoryName = json[0]["category"]["name"].string{
+                    println("category: \(categoryName)")
+                }
             }
         }
         /*
