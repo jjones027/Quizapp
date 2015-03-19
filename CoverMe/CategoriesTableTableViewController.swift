@@ -16,6 +16,9 @@ class CategoriesTableTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Set the title on nav bar
+        self.navigationItem.title = "Category"
+        
         // Retrieve the category name from JSON file using SwiftyJSON & add to category array
         if let path = NSBundle.mainBundle().pathForResource("categories", ofType: "json") {
             if let data = NSData(contentsOfMappedFile: path) {
