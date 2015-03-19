@@ -16,25 +16,16 @@ class CategoriesTableTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Test data for categories
-        let sixties = Category(name: "1960s")
-        let seventies = Category(name: "1970s")
-        let eighties = Category(name: "1980s")
-        let nineties = Category(name: "1990s")
-        let thousands = Category(name: "2000s")
-        
-        self.categories.append(sixties)
-        self.categories.append(seventies)
-        self.categories.append(eighties)
-        self.categories.append(nineties)
-        self.categories.append(thousands)
-        
+        // Retrieve the category name from JSON file using SwiftyJSON & add to category array
         if let path = NSBundle.mainBundle().pathForResource("categories", ofType: "json") {
             if let data = NSData(contentsOfMappedFile: path) {
                 let json = JSON(data: data, options: NSJSONReadingOptions.AllowFragments, error: nil)
-                println("jason: \(json)")
-                if let categoryName = json[0]["category"]["name"].string{
-                    println("category: \(categoryName)")
+                for i in 0...json["category"].count {
+                    if let jsonCategoryName = json["category"][i].string{
+                       // println("category: \(categoryName)")
+                       let categoryName = Category(name: jsonCategoryName)
+                       self.categories.append(categoryName)
+                    }
                 }
             }
         }
