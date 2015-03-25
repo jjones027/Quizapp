@@ -19,6 +19,8 @@ class CategoriesTableTableViewController: UITableViewController {
         // Set the title on nav bar
         self.navigationItem.title = "Category"
         
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        
         // Retrieve the category name from JSON file using SwiftyJSON & add to category array
         if let path = NSBundle.mainBundle().pathForResource("categories", ofType: "json") {
             if let data = NSData(contentsOfMappedFile: path) {
@@ -46,12 +48,13 @@ class CategoriesTableTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let indexPath = self.tableView.indexPathForCell(sender as UITableViewCell)!
-        let category = self.categories[indexPath.row]
-        var destination = segue.destinationViewController as DetailViewController
-        destination.category = category
+    
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        //notification - creation and receiving notification. observer/notification pattern or maintain handle
+        NSNotificationCenter.defaultCenter().postNotificationName("CategorySelected", object: nil, userInfo:["index": indexPath])
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

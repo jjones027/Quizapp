@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FE24CB0D1ABB674A00C6547F /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE24CB0C1ABB674A00C6547F /* HomeScreenViewController.swift */; };
 		FE27F65E1AB119E800956FCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE27F65D1AB119E800956FCD /* AppDelegate.swift */; };
 		FE27F6601AB119E800956FCD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE27F65F1AB119E800956FCD /* ViewController.swift */; };
 		FE27F6631AB119E800956FCD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE27F6611AB119E800956FCD /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FE24CB0C1ABB674A00C6547F /* HomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		FE27F6581AB119E800956FCD /* CoverMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoverMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE27F65C1AB119E800956FCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE27F65D1AB119E800956FCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				FE8C2A531AB4D7FE007AD7D8 /* DetailViewController.swift */,
 				FE8C2A511AB4B9D9007AD7D8 /* Category.swift */,
 				FE8C2A4F1AB4B47B007AD7D8 /* CategoriesTableTableViewController.swift */,
+				FE24CB0C1ABB674A00C6547F /* HomeScreenViewController.swift */,
 				FE27F6641AB119E800956FCD /* Images.xcassets */,
 				FE27F6661AB119E800956FCD /* LaunchScreen.xib */,
 				FE27F65B1AB119E800956FCD /* Supporting Files */,
@@ -240,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE27F6601AB119E800956FCD /* ViewController.swift in Sources */,
+				FE24CB0D1ABB674A00C6547F /* HomeScreenViewController.swift in Sources */,
 				FE27F65E1AB119E800956FCD /* AppDelegate.swift in Sources */,
 				FE8C2A541AB4D7FE007AD7D8 /* DetailViewController.swift in Sources */,
 				FE8C2A501AB4B47B007AD7D8 /* CategoriesTableTableViewController.swift in Sources */,

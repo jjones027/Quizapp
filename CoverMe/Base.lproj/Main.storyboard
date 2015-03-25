@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gYi-Td-mLl">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Categories Table Table View Controller-->
@@ -9,7 +10,7 @@
             <objects>
                 <tableViewController id="2MC-nr-Yf0" customClass="CategoriesTableTableViewController" customModule="CoverMe" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="8yC-33-A1c">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="528" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -32,7 +33,6 @@
                                 <connections>
                                     <outlet property="categoryLabel" destination="BfJ-HR-nZW" id="B7j-Zr-Ul4"/>
                                     <outlet property="lockImageView" destination="Dtx-xd-Mvk" id="WFp-dd-pzv"/>
-                                    <segue destination="vf1-70-ydB" kind="show" identifier="questionDetailSegue" id="pcq-gN-ngY"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -41,11 +41,49 @@
                             <outlet property="delegate" destination="2MC-nr-Yf0" id="fgd-fy-3iR"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="CPf-SY-Ayd"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cUz-y6-Zlo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1215" y="377"/>
+        </scene>
+        <!--Cat-->
+        <scene sceneID="Rgr-Ij-RyN">
+            <objects>
+                <viewController id="Fl2-i7-t26" customClass="HomeScreenViewController" customModule="CoverMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tFv-g6-hxD"/>
+                        <viewControllerLayoutGuide type="bottom" id="pa3-tM-Nzo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="s9D-aL-OjR">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yaa-4m-wwk">
+                                <rect key="frame" x="42" y="85" width="528" height="455"/>
+                                <connections>
+                                    <segue destination="2MC-nr-Yf0" kind="embed" identifier="embedTableView" id="TF8-Rb-qe4"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Yaa-4m-wwk" firstAttribute="top" secondItem="tFv-g6-hxD" secondAttribute="bottom" constant="21" id="7EW-hd-L8N"/>
+                            <constraint firstItem="Yaa-4m-wwk" firstAttribute="leading" secondItem="s9D-aL-OjR" secondAttribute="leadingMargin" constant="26" id="OKk-Hw-Bod"/>
+                            <constraint firstItem="pa3-tM-Nzo" firstAttribute="top" secondItem="Yaa-4m-wwk" secondAttribute="bottom" constant="60" id="XTc-uG-vpC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Yaa-4m-wwk" secondAttribute="trailing" constant="14" id="Zji-SU-gBs"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Cat" id="bbG-d0-YB0">
+                        <barButtonItem key="backBarButtonItem" title=" " id="hEd-6o-B2D"/>
+                        <barButtonItem key="rightBarButtonItem" image="unlocked.png" id="43O-yw-zUv"/>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="vf1-70-ydB" kind="show" identifier="questionDetailSegue" id="HJB-UD-QaJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="02j-Jd-J4W" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1215" y="-339"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="Vr7-za-ax7">
@@ -65,6 +103,14 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WIr-mF-iyo">
+                                <rect key="frame" x="0.0" y="0.0" width="528" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="bZQ-kx-PJg">
+                                        <barButtonItem key="leftBarButtonItem" image="unlocked.png" id="sij-16-rUe"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -87,7 +133,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="2MC-nr-Yf0" kind="relationship" relationship="rootViewController" id="uCk-np-SG4"/>
+                        <segue destination="Fl2-i7-t26" kind="relationship" relationship="rootViewController" id="2Mn-LQ-H6h"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cz6-Rd-A5E" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -95,4 +141,7 @@
             <point key="canvasLocation" x="403" y="380"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="unlocked.png" width="21" height="26"/>
+    </resources>
 </document>
