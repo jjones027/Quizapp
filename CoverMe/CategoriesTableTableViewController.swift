@@ -16,31 +16,28 @@ class CategoriesTableTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Set the title on nav bar
-        self.navigationItem.title = "Category"
-        
+        // Add footer view to remove extra rows in table
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         
         // Retrieve the category name from JSON file using SwiftyJSON & add to category array
         if let path = NSBundle.mainBundle().pathForResource("categories", ofType: "json") {
             if let data = NSData(contentsOfMappedFile: path) {
-                let json = JSON(data: data, options: NSJSONReadingOptions.AllowFragments, error: nil)
+                var error: NSError? = nil
+                let json = JSON(data: data, options: NSJSONReadingOptions.AllowFragments, error: &error)
+                if error != nil {
+                    println(error?.description)
+                }
                 for i in 0...json["category"].count {
                     if let jsonCategoryName = json["category"][i].string{
-                       // println("category: \(categoryName)")
+                        if let album = json[jsonCategoryName]["album"].string{
+                            println("subcategory: \(album)")}
                        let categoryName = Category(name: jsonCategoryName)
                        self.categories.append(categoryName)
                     }
                 }
             }
         }
-        /*
-        let path = NSBundle.mainBundle().pathForResource("categories", ofType: "json")
-        let jsonData = NSData.dataWithContentsOfFile(path, options: .DataReadingMappedIfSafe, error: nil)
-        var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
-        var persons : NSArray = jsonResult["category"] as NSArray */
         
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -51,7 +48,8 @@ class CategoriesTableTableViewController: UITableViewController {
     
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //notification - creation and receiving notification. observer/notification pattern or maintain handle
+        
+        // When user selects table row post notification & indexPath -listen for notification within HomeScreenViewController
         NSNotificationCenter.defaultCenter().postNotificationName("CategorySelected", object: nil, userInfo:["index": indexPath])
     }
     

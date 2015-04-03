@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		FE24CB0D1ABB674A00C6547F /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE24CB0C1ABB674A00C6547F /* HomeScreenViewController.swift */; };
 		FE27F65E1AB119E800956FCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE27F65D1AB119E800956FCD /* AppDelegate.swift */; };
-		FE27F6601AB119E800956FCD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE27F65F1AB119E800956FCD /* ViewController.swift */; };
 		FE27F6631AB119E800956FCD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE27F6611AB119E800956FCD /* Main.storyboard */; };
 		FE27F6651AB119E800956FCD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE27F6641AB119E800956FCD /* Images.xcassets */; };
 		FE27F6681AB119E800956FCD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE27F6661AB119E800956FCD /* LaunchScreen.xib */; };
@@ -22,6 +21,14 @@
 		FE8C2AC51AB633AF007AD7D8 /* unlocked.png in Resources */ = {isa = PBXBuildFile; fileRef = FE8C2AC41AB633AF007AD7D8 /* unlocked.png */; };
 		FED1D64C1AB7C01D00C1766F /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED1D64B1AB7C01D00C1766F /* SwiftyJSON.swift */; };
 		FED1D64E1AB85A5E00C1766F /* categories.json in Resources */ = {isa = PBXBuildFile; fileRef = FED1D64D1AB85A5E00C1766F /* categories.json */; };
+		FEDA90E91AC37C4500C4E95E /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = FEDA90E81AC37C4500C4E95E /* settings.png */; };
+		FEDA90F01AC38DCE00C4E95E /* 1984.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = FEDA90EA1AC38DCE00C4E95E /* 1984.jpeg */; };
+		FEDA90F11AC38DCE00C4E95E /* Acdc_Highway_to_Hell.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = FEDA90EB1AC38DCE00C4E95E /* Acdc_Highway_to_Hell.jpeg */; };
+		FEDA90F21AC38DCE00C4E95E /* Aenima.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = FEDA90EC1AC38DCE00C4E95E /* Aenima.jpeg */; };
+		FEDA90F31AC38DCE00C4E95E /* Alladin_Sane.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = FEDA90ED1AC38DCE00C4E95E /* Alladin_Sane.jpeg */; };
+		FEDA90F41AC38DCE00C4E95E /* American_Idiot.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = FEDA90EE1AC38DCE00C4E95E /* American_Idiot.jpeg */; };
+		FEDA90F51AC38DCE00C4E95E /* And_Justice_For_All.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = FEDA90EF1AC38DCE00C4E95E /* And_Justice_For_All.jpeg */; };
+		FEDA90F71AC38E6700C4E95E /* SubCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDA90F61AC38E6700C4E95E /* SubCategoryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +46,6 @@
 		FE27F6581AB119E800956FCD /* CoverMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoverMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE27F65C1AB119E800956FCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE27F65D1AB119E800956FCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FE27F65F1AB119E800956FCD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FE27F6621AB119E800956FCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FE27F6641AB119E800956FCD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FE27F6671AB119E800956FCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -54,6 +60,14 @@
 		FE8C2AC41AB633AF007AD7D8 /* unlocked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unlocked.png; sourceTree = "<group>"; };
 		FED1D64B1AB7C01D00C1766F /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		FED1D64D1AB85A5E00C1766F /* categories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = categories.json; sourceTree = "<group>"; };
+		FEDA90E81AC37C4500C4E95E /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
+		FEDA90EA1AC38DCE00C4E95E /* 1984.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1984.jpeg; sourceTree = "<group>"; };
+		FEDA90EB1AC38DCE00C4E95E /* Acdc_Highway_to_Hell.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Acdc_Highway_to_Hell.jpeg; sourceTree = "<group>"; };
+		FEDA90EC1AC38DCE00C4E95E /* Aenima.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Aenima.jpeg; sourceTree = "<group>"; };
+		FEDA90ED1AC38DCE00C4E95E /* Alladin_Sane.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Alladin_Sane.jpeg; sourceTree = "<group>"; };
+		FEDA90EE1AC38DCE00C4E95E /* American_Idiot.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = American_Idiot.jpeg; sourceTree = "<group>"; };
+		FEDA90EF1AC38DCE00C4E95E /* And_Justice_For_All.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = And_Justice_For_All.jpeg; sourceTree = "<group>"; };
+		FEDA90F61AC38E6700C4E95E /* SubCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubCategoryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,17 +110,13 @@
 		FE27F65A1AB119E800956FCD /* CoverMe */ = {
 			isa = PBXGroup;
 			children = (
-				FED1D64D1AB85A5E00C1766F /* categories.json */,
-				FE8C2AC41AB633AF007AD7D8 /* unlocked.png */,
-				FE27F67D1AB1231F00956FCD /* CoverMe_SplashScreen.png */,
+				FEE7E8751AC39E94009D6F9D /* View */,
+				FEDA90E71AC37AAE00C4E95E /* Models */,
+				FEDA90E61AC37A9400C4E95E /* JSON */,
+				FEDA90E51AC37A6B00C4E95E /* Controllers */,
+				FEDA90E41AC37A5300C4E95E /* Images */,
 				FE27F65D1AB119E800956FCD /* AppDelegate.swift */,
-				FE27F65F1AB119E800956FCD /* ViewController.swift */,
 				FE27F6611AB119E800956FCD /* Main.storyboard */,
-				FE8C2AC21AB63064007AD7D8 /* CategoryCell.swift */,
-				FE8C2A531AB4D7FE007AD7D8 /* DetailViewController.swift */,
-				FE8C2A511AB4B9D9007AD7D8 /* Category.swift */,
-				FE8C2A4F1AB4B47B007AD7D8 /* CategoriesTableTableViewController.swift */,
-				FE24CB0C1ABB674A00C6547F /* HomeScreenViewController.swift */,
 				FE27F6641AB119E800956FCD /* Images.xcassets */,
 				FE27F6661AB119E800956FCD /* LaunchScreen.xib */,
 				FE27F65B1AB119E800956FCD /* Supporting Files */,
@@ -137,6 +147,57 @@
 				FE27F6721AB119E800956FCD /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FEDA90E41AC37A5300C4E95E /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				FEDA90EA1AC38DCE00C4E95E /* 1984.jpeg */,
+				FEDA90EB1AC38DCE00C4E95E /* Acdc_Highway_to_Hell.jpeg */,
+				FEDA90EC1AC38DCE00C4E95E /* Aenima.jpeg */,
+				FEDA90ED1AC38DCE00C4E95E /* Alladin_Sane.jpeg */,
+				FEDA90EE1AC38DCE00C4E95E /* American_Idiot.jpeg */,
+				FEDA90EF1AC38DCE00C4E95E /* And_Justice_For_All.jpeg */,
+				FEDA90E81AC37C4500C4E95E /* settings.png */,
+				FE8C2AC41AB633AF007AD7D8 /* unlocked.png */,
+				FE27F67D1AB1231F00956FCD /* CoverMe_SplashScreen.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		FEDA90E51AC37A6B00C4E95E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FE8C2A4F1AB4B47B007AD7D8 /* CategoriesTableTableViewController.swift */,
+				FEDA90F61AC38E6700C4E95E /* SubCategoryViewController.swift */,
+				FE8C2A531AB4D7FE007AD7D8 /* DetailViewController.swift */,
+				FE24CB0C1ABB674A00C6547F /* HomeScreenViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		FEDA90E61AC37A9400C4E95E /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				FED1D64D1AB85A5E00C1766F /* categories.json */,
+			);
+			name = JSON;
+			sourceTree = "<group>";
+		};
+		FEDA90E71AC37AAE00C4E95E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FE8C2A511AB4B9D9007AD7D8 /* Category.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		FEE7E8751AC39E94009D6F9D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FE8C2AC21AB63064007AD7D8 /* CategoryCell.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,9 +280,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEDA90E91AC37C4500C4E95E /* settings.png in Resources */,
+				FEDA90F11AC38DCE00C4E95E /* Acdc_Highway_to_Hell.jpeg in Resources */,
 				FE27F6631AB119E800956FCD /* Main.storyboard in Resources */,
+				FEDA90F41AC38DCE00C4E95E /* American_Idiot.jpeg in Resources */,
+				FEDA90F31AC38DCE00C4E95E /* Alladin_Sane.jpeg in Resources */,
 				FED1D64E1AB85A5E00C1766F /* categories.json in Resources */,
+				FEDA90F01AC38DCE00C4E95E /* 1984.jpeg in Resources */,
 				FE27F6681AB119E800956FCD /* LaunchScreen.xib in Resources */,
+				FEDA90F21AC38DCE00C4E95E /* Aenima.jpeg in Resources */,
+				FEDA90F51AC38DCE00C4E95E /* And_Justice_For_All.jpeg in Resources */,
 				FE27F67E1AB1231F00956FCD /* CoverMe_SplashScreen.png in Resources */,
 				FE8C2AC51AB633AF007AD7D8 /* unlocked.png in Resources */,
 				FE27F6651AB119E800956FCD /* Images.xcassets in Resources */,
@@ -242,13 +310,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE27F6601AB119E800956FCD /* ViewController.swift in Sources */,
 				FE24CB0D1ABB674A00C6547F /* HomeScreenViewController.swift in Sources */,
 				FE27F65E1AB119E800956FCD /* AppDelegate.swift in Sources */,
 				FE8C2A541AB4D7FE007AD7D8 /* DetailViewController.swift in Sources */,
 				FE8C2A501AB4B47B007AD7D8 /* CategoriesTableTableViewController.swift in Sources */,
 				FE8C2A521AB4B9D9007AD7D8 /* Category.swift in Sources */,
 				FED1D64C1AB7C01D00C1766F /* SwiftyJSON.swift in Sources */,
+				FEDA90F71AC38E6700C4E95E /* SubCategoryViewController.swift in Sources */,
 				FE8C2AC31AB63064007AD7D8 /* CategoryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

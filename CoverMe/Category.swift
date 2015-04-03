@@ -13,7 +13,7 @@ class Category: NSObject {
     
     init(name: String? = nil) {
         self.name = name
-        super.init()  // JAJ - Do I need to call super.init here? Anytime class is NSObject call parent class init
+        super.init()
     }
    
 }

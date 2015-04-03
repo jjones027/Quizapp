@@ -1,3 +1,8 @@
 {
-  "category":[ "1960s", "1970s", "1980s", "1990s", "2000s" ]
+    "category":[ "1960s", "1970s", "1980s", "1990s", "2000s"],
+    "1960s": {"album":"1984","Image":"1984.jpeg"},
+    "1970s": {"album":"Aenima","Image":"Aenima.jpeg"},
+    "1980s": {"album":"1984","Image":"1984.jpeg"},
+    "1990s": {"album":"And Justice For All","Image":"And_Justice_For_All.jpeg"},
+    "2000s": {"album":"1984","Image":"1984.jpeg"}
 }

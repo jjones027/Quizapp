@@ -10,7 +10,6 @@ import UIKit
 
 class HomeScreenViewController: UIViewController {
 
-    
     var selectedCategory:Int? = 0
     var tableViewController:CategoriesTableTableViewController? = nil
     
@@ -32,7 +31,7 @@ class HomeScreenViewController: UIViewController {
         var userInfo = notification.userInfo!
         var index: NSIndexPath? = userInfo["index"] as? NSIndexPath
         selectedCategory = index?.row
-        performSegueWithIdentifier("questionDetailSegue", sender: self)
+        performSegueWithIdentifier("subCategorySegue", sender: self)
         
     }
     
@@ -42,10 +41,9 @@ class HomeScreenViewController: UIViewController {
             self.tableViewController = segue.destinationViewController as? CategoriesTableTableViewController
             
         } else {
-        let category = self.tableViewController!.categories[selectedCategory!]
-        var destination = segue.destinationViewController as DetailViewController
-        destination.category = category
-        
+            let category = self.tableViewController!.categories[selectedCategory!]
+            var destination = segue.destinationViewController as SubCategoryViewController
+            destination.category = category
         }
     }
     
