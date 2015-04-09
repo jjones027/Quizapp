@@ -12,6 +12,8 @@ let reuseIdentifier = "SubCategoryCell"
 
 class SubCategoryViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout{
     
+    //Create json & category properties
+    var json: JSON = []
     var category: Category?
 
     override func viewDidLoad() {
@@ -21,9 +23,24 @@ class SubCategoryViewController: UICollectionViewController, UICollectionViewDel
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        //self.collectionView!.registerClass(AlbumImageCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
-        // Do any additional setup after loading the view.
+        var categoryName = self.category?.name
+        // Get the category name passed from the table view
+    /*    if let category = self.category {
+            if let categoryName = category.name {
+            println(categoryName)
+            }
+        } */
+        
+        // Filter the json object only for images associated with the category
+        for i in 0...json[(categoryName)!].count {
+                if let image = json[(categoryName)!][i]["Image"].string {
+                println("image: \(image)")
+                }
+        }
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,11 +72,14 @@ class SubCategoryViewController: UICollectionViewController, UICollectionViewDel
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as UICollectionViewCell
+        let cell: AlbumImageCell = collectionView.dequeueReusableCellWithReuseIdentifier("SubCategoryCell", forIndexPath: indexPath) as AlbumImageCell
+        cell.backgroundColor = UIColor.whiteColor()
+   //     var image: UIImage = UIImage(named: "unlocked")!
+        if let image = json[self.category!.name!][indexPath.item]["Image"].string {
+            cell.albumImageView.image = UIImage(named: image)
+        }
         
-        cell.backgroundColor = UIColor.blackColor()
-    
-        // Configure the cell
+     //   cell.AlbumImageView.image = UIImage(named: "unlocked")
     
         return cell
     }

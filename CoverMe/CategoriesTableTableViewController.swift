@@ -12,6 +12,9 @@ class CategoriesTableTableViewController: UITableViewController {
     
     //Create categories array
     var categories = [Category] ()
+    
+    //Create JSON property
+    var json: JSON = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,14 +26,14 @@ class CategoriesTableTableViewController: UITableViewController {
         if let path = NSBundle.mainBundle().pathForResource("categories", ofType: "json") {
             if let data = NSData(contentsOfMappedFile: path) {
                 var error: NSError? = nil
-                let json = JSON(data: data, options: NSJSONReadingOptions.AllowFragments, error: &error)
+                self.json = JSON(data: data, options: NSJSONReadingOptions.AllowFragments, error: &error)
                 if error != nil {
                     println(error?.description)
                 }
                 for i in 0...json["category"].count {
                     if let jsonCategoryName = json["category"][i].string{
-                        if let album = json[jsonCategoryName]["album"].string{
-                            println("subcategory: \(album)")}
+                     /*   if let album = json[jsonCategoryName]["album"].string{
+                            println("subcategory: \(album)")} */
                        let categoryName = Category(name: jsonCategoryName)
                        self.categories.append(categoryName)
                     }

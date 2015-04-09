@@ -94,25 +94,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="TWn-Tz-U9o">
-                            <size key="itemSize" width="50" height="50"/>
+                            <size key="itemSize" width="200" height="200"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SubCategoryCell" id="5oj-I9-apH">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SubCategoryCell" id="5oj-I9-apH" customClass="AlbumImageCell" customModule="CoverMe" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qJa-MY-5bM">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qJa-MY-5bM">
+                                            <rect key="frame" x="8" y="8" width="184" height="184"/>
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <constraints>
+                                    <constraint firstItem="qJa-MY-5bM" firstAttribute="leading" secondItem="5oj-I9-apH" secondAttribute="leadingMargin" id="19J-DE-Blj"/>
+                                    <constraint firstItem="qJa-MY-5bM" firstAttribute="bottom" secondItem="5oj-I9-apH" secondAttribute="bottomMargin" constant="5" id="8pz-kd-s0a"/>
+                                    <constraint firstItem="qJa-MY-5bM" firstAttribute="top" secondItem="5oj-I9-apH" secondAttribute="topMargin" constant="5" id="eGL-bu-E4V"/>
+                                    <constraint firstItem="qJa-MY-5bM" firstAttribute="trailing" secondItem="5oj-I9-apH" secondAttribute="trailingMargin" constant="5" id="loO-G9-V2y"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="AlbumImageView" destination="qJa-MY-5bM" id="ZN7-S1-SfL"/>
+                                    <outlet property="albumImageView" destination="qJa-MY-5bM" id="cZv-pZ-WHP"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>

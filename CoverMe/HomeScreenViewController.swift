@@ -41,9 +41,14 @@ class HomeScreenViewController: UIViewController {
             self.tableViewController = segue.destinationViewController as? CategoriesTableTableViewController
             
         } else {
+            // Pass selected category to the subcategory view controller
             let category = self.tableViewController!.categories[selectedCategory!]
             var destination = segue.destinationViewController as SubCategoryViewController
             destination.category = category
+            
+            // Pass reference to the json object from tableViewController to the subcategory view controller
+            let json = self.tableViewController?.json
+            destination.json = json!
         }
     }
     
