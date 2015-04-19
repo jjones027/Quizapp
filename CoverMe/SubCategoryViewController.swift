@@ -12,9 +12,10 @@ let reuseIdentifier = "SubCategoryCell"
 
 class SubCategoryViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout{
     
-    //Create json & category properties
+    //Create json & category properties, subcategory array
     var json: JSON = []
     var category: Category?
+    var subcategories = [Subcategory] ()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,10 +37,11 @@ class SubCategoryViewController: UICollectionViewController, UICollectionViewDel
         // Filter the json object only for images associated with the category
         for i in 0...json[(categoryName)!].count {
                 if let image = json[(categoryName)!][i]["Image"].string {
-                println("image: \(image)")
+                    println("image: \(image)")
+                    let subcategory = Subcategory(name: json[(categoryName)!][i]["album"].string,image: image, category: self.category)
+                    self.subcategories.append(subcategory)
                 }
         }
-        
         
     }
 
@@ -48,15 +50,26 @@ class SubCategoryViewController: UICollectionViewController, UICollectionViewDel
         // Dispose of any resources that can be recreated.
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+        
+        // Pass selected category to the subcategory view controller
+    //    self.collectionView?.indexPathsForSelectedItems()
+        let cell = sender as! AlbumImageCell
+        let indexpath = self.collectionView?.indexPathForCell(cell)
+        
+        var destination = segue.destinationViewController as! DetailViewController
+        
+        destination.subcategory = self.subcategories[indexpath!.item]
+        
+        // Pass reference to the json object from tableViewController to the subcategory view controller
+        let json = self.json
+        destination.json = json
     }
-    */
+
 
     // MARK: UICollectionViewDataSource
 
@@ -68,19 +81,19 @@ class SubCategoryViewController: UICollectionViewController, UICollectionViewDel
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //#warning Incomplete method implementation -- Return the number of items in the section
-        return 6
+        return json[self.category!.name!].count
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell: AlbumImageCell = collectionView.dequeueReusableCellWithReuseIdentifier("SubCategoryCell", forIndexPath: indexPath) as AlbumImageCell
+        //Set cell to the subclassed UICollectionViewCell as AlbumImageCell
+        let cell: AlbumImageCell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! AlbumImageCell
+        
+        //Format the cell and set the imageview as the cover image
         cell.backgroundColor = UIColor.whiteColor()
-   //     var image: UIImage = UIImage(named: "unlocked")!
         if let image = json[self.category!.name!][indexPath.item]["Image"].string {
             cell.albumImageView.image = UIImage(named: image)
         }
         
-     //   cell.AlbumImageView.image = UIImage(named: "unlocked")
-    
         return cell
     }
     

@@ -30,6 +30,7 @@
 		FEDA90F41AC38DCE00C4E95E /* American_Idiot.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = FEDA90EE1AC38DCE00C4E95E /* American_Idiot.jpeg */; };
 		FEDA90F51AC38DCE00C4E95E /* And_Justice_For_All.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = FEDA90EF1AC38DCE00C4E95E /* And_Justice_For_All.jpeg */; };
 		FEDA90F71AC38E6700C4E95E /* SubCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDA90F61AC38E6700C4E95E /* SubCategoryViewController.swift */; };
+		FEDB784D1AE18156005218DB /* Subcategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDB784C1AE18156005218DB /* Subcategory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		FEDA90EE1AC38DCE00C4E95E /* American_Idiot.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = American_Idiot.jpeg; sourceTree = "<group>"; };
 		FEDA90EF1AC38DCE00C4E95E /* And_Justice_For_All.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = And_Justice_For_All.jpeg; sourceTree = "<group>"; };
 		FEDA90F61AC38E6700C4E95E /* SubCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubCategoryViewController.swift; sourceTree = "<group>"; };
+		FEDB784C1AE18156005218DB /* Subcategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subcategory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				FE8C2A511AB4B9D9007AD7D8 /* Category.swift */,
+				FEDB784C1AE18156005218DB /* Subcategory.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				FE8C2A501AB4B47B007AD7D8 /* CategoriesTableTableViewController.swift in Sources */,
 				FE563EB01AD6F664000378AC /* AlbumImageCell.swift in Sources */,
 				FE8C2A521AB4B9D9007AD7D8 /* Category.swift in Sources */,
+				FEDB784D1AE18156005218DB /* Subcategory.swift in Sources */,
 				FED1D64C1AB7C01D00C1766F /* SwiftyJSON.swift in Sources */,
 				FEDA90F71AC38E6700C4E95E /* SubCategoryViewController.swift in Sources */,
 				FE8C2AC31AB63064007AD7D8 /* CategoryCell.swift in Sources */,

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gYi-Td-mLl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gYi-Td-mLl">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -122,6 +122,7 @@
                                 <connections>
                                     <outlet property="AlbumImageView" destination="qJa-MY-5bM" id="ZN7-S1-SfL"/>
                                     <outlet property="albumImageView" destination="qJa-MY-5bM" id="cZv-pZ-WHP"/>
+                                    <segue destination="vf1-70-ydB" kind="show" id="53I-cU-mV8"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -153,22 +154,59 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WIr-mF-iyo">
+                            <navigationBar contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WIr-mF-iyo">
                                 <rect key="frame" x="0.0" y="0.0" width="528" height="44"/>
                                 <items>
                                     <navigationItem title="Title" id="bZQ-kx-PJg"/>
                                 </items>
                             </navigationBar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BVA-zk-DeN">
+                                <rect key="frame" x="150" y="150" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="P2J-oc-yc0"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter album name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BRk-yN-rfW">
+                                <rect key="frame" x="76" y="474" width="448" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ns2-ms-EAi">
+                                <rect key="frame" x="262" y="525" width="77" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="77" id="PRX-Wi-Qgc"/>
+                                </constraints>
+                                <state key="normal" title="Submit">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="submitButtonPress:" destination="vf1-70-ydB" eventType="touchUpInside" id="C2p-k2-4hw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BVA-zk-DeN" firstAttribute="centerX" secondItem="EeT-xI-qxE" secondAttribute="centerX" id="5HO-Ti-jmj"/>
+                            <constraint firstItem="BVA-zk-DeN" firstAttribute="centerY" secondItem="EeT-xI-qxE" secondAttribute="centerY" id="6G5-xK-t7u"/>
+                            <constraint firstItem="BRk-yN-rfW" firstAttribute="leading" secondItem="EeT-xI-qxE" secondAttribute="leadingMargin" constant="60" id="6JP-2s-hbk"/>
+                            <constraint firstAttribute="bottom" secondItem="Ns2-ms-EAi" secondAttribute="bottom" constant="45" id="BuU-hj-o4q"/>
+                            <constraint firstItem="BVA-zk-DeN" firstAttribute="top" secondItem="CAA-VX-2b0" secondAttribute="bottom" constant="86" id="egv-Ab-dj5"/>
+                            <constraint firstItem="BRk-yN-rfW" firstAttribute="trailing" secondItem="WIr-mF-iyo" secondAttribute="trailing" constant="-4" id="h03-8N-jW7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="BRk-yN-rfW" secondAttribute="trailing" constant="60" id="mPD-HP-Q5q"/>
+                            <constraint firstItem="BRk-yN-rfW" firstAttribute="top" secondItem="BVA-zk-DeN" secondAttribute="bottom" constant="24" id="smV-aO-1Gt"/>
+                            <constraint firstItem="Ns2-ms-EAi" firstAttribute="centerX" secondItem="BRk-yN-rfW" secondAttribute="centerX" id="tgP-A1-C4s"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="albumImage" destination="BVA-zk-DeN" id="x6P-mA-IL0"/>
+                        <outlet property="answerText" destination="BRk-yN-rfW" id="wxS-4r-cbw"/>
                         <outlet property="categoryLabel" destination="VUf-Ph-P0w" id="cFM-3g-EhG"/>
+                        <outlet property="submitButton" destination="Ns2-ms-EAi" id="jY9-ew-dPW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CfI-jE-zpZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1958" y="449"/>
+            <point key="canvasLocation" x="2682" y="-339"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="v3T-Vl-OEH">

@@ -24,7 +24,8 @@ class CategoriesTableTableViewController: UITableViewController {
         
         // Retrieve the category name from JSON file using SwiftyJSON & add to category array
         if let path = NSBundle.mainBundle().pathForResource("categories", ofType: "json") {
-            if let data = NSData(contentsOfMappedFile: path) {
+            let url:NSURL = NSURL.fileURLWithPath(path)!
+            if let data = NSData(contentsOfURL: url) {
                 var error: NSError? = nil
                 self.json = JSON(data: data, options: NSJSONReadingOptions.AllowFragments, error: &error)
                 if error != nil {
@@ -34,8 +35,8 @@ class CategoriesTableTableViewController: UITableViewController {
                     if let jsonCategoryName = json["category"][i].string{
                      /*   if let album = json[jsonCategoryName]["album"].string{
                             println("subcategory: \(album)")} */
-                       let categoryName = Category(name: jsonCategoryName)
-                       self.categories.append(categoryName)
+                       let category = Category(name: jsonCategoryName)
+                       self.categories.append(category)
                     }
                 }
             }
@@ -78,7 +79,7 @@ class CategoriesTableTableViewController: UITableViewController {
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("CategoryCell", forIndexPath: indexPath) as CategoryCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("CategoryCell", forIndexPath: indexPath) as! CategoryCell
 
         // Populate the table cells with Category name
         let category = self.categories[indexPath.row]
