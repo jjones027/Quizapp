@@ -27,12 +27,6 @@ class SubCategoryViewController: UICollectionViewController, UICollectionViewDel
         //self.collectionView!.registerClass(AlbumImageCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         var categoryName = self.category?.name
-        // Get the category name passed from the table view
-    /*    if let category = self.category {
-            if let categoryName = category.name {
-            println(categoryName)
-            }
-        } */
         
         // Filter the json object only for images associated with the category
         for i in 0...json[(categoryName)!].count {
@@ -57,17 +51,12 @@ class SubCategoryViewController: UICollectionViewController, UICollectionViewDel
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         // Pass selected category to the subcategory view controller
-    //    self.collectionView?.indexPathsForSelectedItems()
         let cell = sender as! AlbumImageCell
         let indexpath = self.collectionView?.indexPathForCell(cell)
         
         var destination = segue.destinationViewController as! DetailViewController
         
         destination.subcategory = self.subcategories[indexpath!.item]
-        
-        // Pass reference to the json object from tableViewController to the subcategory view controller
-        let json = self.json
-        destination.json = json
     }
 
 
