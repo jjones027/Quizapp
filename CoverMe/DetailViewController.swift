@@ -10,15 +10,28 @@ import UIKit
 
 class DetailViewController: UIViewController,WordPuzzleDelegate {
     
-    //Create subcategory & puzzle properties
+    //Create subcategory, puzzle & score properties
     var subcategory: Subcategory?
     var puzzle: WordPuzzle? = nil
+    var score = 0
+    var newScore = 0
+    
 
     @IBOutlet var categoryLabel: UILabel!
     @IBOutlet weak var albumImage: UIImageView!
+    @IBOutlet weak var scoreLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Set score label
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        if (defaults.valueForKey("score") != nil) {
+            score = defaults.valueForKey("score") as! NSInteger!
+            scoreLabel.text = NSString(format: "Score: %i", score) as String
+        }
         
         // Set category label
         if let category = self.subcategory?.category {
@@ -30,7 +43,7 @@ class DetailViewController: UIViewController,WordPuzzleDelegate {
         // Set album image
         if let subcategory = self.subcategory {
             if let image = subcategory.image {
-                println("detail cat image: \(image)")
+                print("detail cat image: \(image)")
                 albumImage.image = UIImage(named: image)
             }
         }
@@ -48,6 +61,15 @@ class DetailViewController: UIViewController,WordPuzzleDelegate {
     }
     
     func didFinishSolvingPuzzle() {
+        
+        // Update the score in the NSUserDefaults
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if (defaults.valueForKey("score") != nil) {
+            score = defaults.valueForKey("score") as! Int
+        }
+        newScore = score + 10
+        defaults.setInteger(newScore, forKey: "score")
+        defaults.synchronize()
         
         // Display alert when user solves puzzle and navigate back to previous controller
         let alertController = UIAlertController(title: "Answer Status", message:

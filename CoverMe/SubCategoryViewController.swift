@@ -26,12 +26,12 @@ class SubCategoryViewController: UICollectionViewController, UICollectionViewDel
         // Register cell classes
         //self.collectionView!.registerClass(AlbumImageCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
-        var categoryName = self.category?.name
+        let categoryName = self.category?.name
         
         // Filter the json object only for images associated with the category
         for i in 0...json[(categoryName)!].count {
                 if let image = json[(categoryName)!][i]["Image"].string {
-                    println("image: \(image)")
+                    print("image: \(image)")
                     let subcategory = Subcategory(name: json[(categoryName)!][i]["album"].string,image: image, category: self.category)
                     self.subcategories.append(subcategory)
                 }
@@ -54,7 +54,7 @@ class SubCategoryViewController: UICollectionViewController, UICollectionViewDel
         let cell = sender as! AlbumImageCell
         let indexpath = self.collectionView?.indexPathForCell(cell)
         
-        var destination = segue.destinationViewController as! DetailViewController
+        let destination = segue.destinationViewController as! DetailViewController
         
         destination.subcategory = self.subcategories[indexpath!.item]
     }
@@ -90,7 +90,7 @@ class SubCategoryViewController: UICollectionViewController, UICollectionViewDel
         
         // Need math - self.view.frame - will be size of the screen
       //  self.view.frame.size
-        return CGSizeMake(110, 110)
+        return CGSizeMake(105, 105)
     }
     
     

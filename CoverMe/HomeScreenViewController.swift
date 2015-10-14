@@ -29,7 +29,7 @@ class HomeScreenViewController: UIViewController {
     func doSegue(notification:NSNotification) {
     
         var userInfo = notification.userInfo!
-        var index: NSIndexPath? = userInfo["index"] as? NSIndexPath
+        let index: NSIndexPath? = userInfo["index"] as? NSIndexPath
         selectedCategory = index?.row
         performSegueWithIdentifier("subCategorySegue", sender: self)
         
@@ -43,7 +43,7 @@ class HomeScreenViewController: UIViewController {
         } else {
             // Pass selected category to the subcategory view controller
             let category = self.tableViewController!.categories[selectedCategory!]
-            var destination = segue.destinationViewController as! SubCategoryViewController
+            let destination = segue.destinationViewController as! SubCategoryViewController
             destination.category = category
             
             // Pass reference to the json object from tableViewController to the subcategory view controller

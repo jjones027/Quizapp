@@ -24,12 +24,12 @@ class CategoriesTableTableViewController: UITableViewController {
         
         // Retrieve the category name from JSON file using SwiftyJSON & add to category array
         if let path = NSBundle.mainBundle().pathForResource("categories", ofType: "json") {
-            let url:NSURL = NSURL.fileURLWithPath(path)!
+            let url:NSURL = NSURL.fileURLWithPath(path)
             if let data = NSData(contentsOfURL: url) {
                 var error: NSError? = nil
                 self.json = JSON(data: data, options: NSJSONReadingOptions.AllowFragments, error: &error)
                 if error != nil {
-                    println(error?.description)
+                    print(error?.description)
                 }
                 for i in 0...json["category"].count {
                     if let jsonCategoryName = json["category"][i].string{
