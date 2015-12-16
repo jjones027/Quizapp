@@ -31,12 +31,14 @@
 @property (nonatomic, strong) NSMutableArray *wordLabels;
 
 @property (nonatomic, assign) int randomCount;
+@property (nonatomic, assign) int currentLetterIndex;
+
 
 @end
 
 @implementation WordPuzzle
 
-@synthesize originalWord,workingWord,songLetters,buttons,wordLabels,randomCount;
+@synthesize originalWord,workingWord,songLetters,buttons,wordLabels,randomCount,currentLetterIndex;
 @synthesize questionGridCellSize,answerGridCellSize;
 
 - (id)initWithWord:(NSString *)str andRandomCharacterToInjectCount:(int)count
@@ -46,6 +48,7 @@
     {
         originalWord = str.lowercaseString;
         randomCount = count;
+        currentLetterIndex = 0;
         questionGridCellSize = CGSizeMake(40, 40);
         answerGridCellSize = CGSizeMake(40, 40);
         [self initialSetup];
@@ -151,25 +154,44 @@
     NSString *clickedLetter = btn.currentTitle;
     if ([originalWord rangeOfString:[NSString stringWithFormat:@"%@",clickedLetter]].location != NSNotFound)
     {
+        // Check if the clicked letter matches the correct letter for currentLetterIndex
+        if ([originalWord characterAtIndex:currentLetterIndex] != [clickedLetter characterAtIndex:0]) {
+            NSLog(@"Not the right letter for this one");
+            //[self.delegate didSelectWrongTile:clickedLetter];
+            return;
+        } else {
+            NSLog(@"That's right");
+            currentLetterIndex++;
+        }
+        
         if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectCorrectTile:)])
         {
             [self.delegate didSelectCorrectTile:clickedLetter];
         }
         for (UIButton* button in buttons)
         {
-            if ([button.currentTitle isEqualToString:clickedLetter])
+            if ([button.currentTitle isEqualToString:clickedLetter] && button.hidden == NO)
             {
                 button.hidden = YES;
+                break;
             }
         }
         for (UILabel* wordLabel in wordLabels)
         {
-            if ([wordLabel.text isEqualToString:clickedLetter])
+            if ([wordLabel.text isEqualToString:clickedLetter] && wordLabel.hidden == YES)
             {
                 wordLabel.hidden = NO;
+                break;
             }
         }
-        workingWord = [workingWord stringByReplacingOccurrencesOfString:clickedLetter withString:@""];
+        NSRange rOriginal = [workingWord rangeOfString: clickedLetter];
+        if (NSNotFound != rOriginal.location) {
+            workingWord = [workingWord
+                        stringByReplacingCharactersInRange: rOriginal
+                        withString:                         @""];
+        }
+        
+        //workingWord = [workingWord stringByReplacingOccurrencesOfString:clickedLetter withString:@""];
         if (workingWord.length == 0)
         {
             if (self.delegate && [self.delegate respondsToSelector:@selector(didFinishSolvingPuzzle)])
