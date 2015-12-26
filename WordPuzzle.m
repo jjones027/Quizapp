@@ -152,30 +152,24 @@
 {
     UIButton *btn = (UIButton*)sender;
     NSString *clickedLetter = btn.currentTitle;
-    if ([originalWord rangeOfString:[NSString stringWithFormat:@"%@",clickedLetter]].location != NSNotFound)
-    {
+    /*if ([originalWord rangeOfString:[NSString stringWithFormat:@"%@",clickedLetter]].location != NSNotFound)
+    {*/
         // Check if the clicked letter matches the correct letter for currentLetterIndex
-        if ([originalWord characterAtIndex:currentLetterIndex] != [clickedLetter characterAtIndex:0]) {
-            NSLog(@"Not the right letter for this one");
+        //if ([originalWord characterAtIndex:currentLetterIndex] != [clickedLetter characterAtIndex:0]) {
+            //NSLog(@"Not the right letter for this one");
             //[self.delegate didSelectWrongTile:clickedLetter];
-            return;
-        } else {
-            NSLog(@"That's right");
-            currentLetterIndex++;
-        }
+            // Let them finish the puzzle and check for validity at the end
+            //return;
         
         if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectCorrectTile:)])
         {
             [self.delegate didSelectCorrectTile:clickedLetter];
         }
-        for (UIButton* button in buttons)
+        if (btn.hidden == NO)
         {
-            if ([button.currentTitle isEqualToString:clickedLetter] && button.hidden == NO)
-            {
-                button.hidden = YES;
-                break;
-            }
+            btn.hidden = YES;
         }
+        /*
         for (UILabel* wordLabel in wordLabels)
         {
             if ([wordLabel.text isEqualToString:clickedLetter] && wordLabel.hidden == YES)
@@ -184,29 +178,46 @@
                 break;
             }
         }
-        NSRange rOriginal = [workingWord rangeOfString: clickedLetter];
+         */
+
+        ((UILabel*)wordLabels[currentLetterIndex]).text = [NSString stringWithFormat:@"%@", clickedLetter];
+        [wordLabels[currentLetterIndex] setHidden:false];
+        currentLetterIndex++;
+        
+        /*NSRange rOriginal = [workingWord rangeOfString: clickedLetter];
         if (NSNotFound != rOriginal.location) {
             workingWord = [workingWord
                         stringByReplacingCharactersInRange: rOriginal
                         withString:                         @""];
-        }
+        }*/
         
         //workingWord = [workingWord stringByReplacingOccurrencesOfString:clickedLetter withString:@""];
-        if (workingWord.length == 0)
+        if (workingWord.length == currentLetterIndex)
         {
+            // Now check if the words are the same
+            int i = 0;
+            for (UILabel* wordLabel in wordLabels)
+            {
+                if ([wordLabel.text characterAtIndex:0] != [originalWord characterAtIndex:i])
+                {
+                    if (![wordLabel.text isEqualToString:@" "]) {
+                        NSLog(@"Strings do not match");
+                    }
+                }
+            }
             if (self.delegate && [self.delegate respondsToSelector:@selector(didFinishSolvingPuzzle)])
             {
                 [self.delegate didFinishSolvingPuzzle];
             }
         }
-    }
+    /*}
     else
     {
         if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectWrongTile:)])
         {
             [self.delegate didSelectWrongTile:clickedLetter];
         }
-    }
+    }*/
 }
 
 @end
