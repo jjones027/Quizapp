@@ -7,6 +7,16 @@
 
 @end
 
+@interface AnswerButton : UIButton
+
+@property (weak, nonatomic) UIButton *questionButton;
+
+@end
+
+@implementation AnswerButton
+
+@end
+
 @implementation NSMutableArray (Shuffle)
 
 - (void)shuffle
@@ -65,7 +75,7 @@
     workingWord = [originalWord stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSMutableString *mu = [NSMutableString stringWithString:workingWord];
     
-    NSString *alphabet  = @"ABCDEFGHIJKLMNOPQRSTUVWXZY";
+    NSString *alphabet  = @"ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     for (NSUInteger i = 0; i < randomCount; i++)
     {
         u_int32_t r = arc4random() % [alphabet length];
@@ -122,14 +132,16 @@
         }
         else
         {
-            UILabel *answerLabel = [[UILabel alloc]initWithFrame:CGRectMake(xValue, yValue,
+            AnswerButton *answerLabel = [[AnswerButton alloc]initWithFrame:CGRectMake(xValue, yValue,
                                                                             questionGridCellSize.width, questionGridCellSize.height)];
-            answerLabel.text = [NSString stringWithFormat:@"%C", [originalWord characterAtIndex:i]];
-            answerLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:questionGridCellSize.width/2];
+                                     
+            [answerLabel setTitle:[NSString stringWithFormat:@"%C", [originalWord characterAtIndex:i]] forState:UIControlStateNormal];
+            [answerLabel.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:questionGridCellSize.width/2]];
+            [answerLabel setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             [answerLabel setBackgroundColor:[UIColor clearColor]];
-            [answerLabel setTextColor:[UIColor blackColor]];
-            answerLabel.textAlignment = NSTextAlignmentCenter;
+            answerLabel.titleLabel.textAlignment = NSTextAlignmentCenter;
             answerLabel.hidden = YES;
+            [answerLabel addTarget:self action:@selector(returnLetter:) forControlEvents:UIControlEventTouchUpInside];
             
             UIImageView *bgImage = [[UIImageView alloc] initWithFrame:CGRectMake(xValue, yValue,
                                                                                  questionGridCellSize.width, questionGridCellSize.height)];
@@ -148,6 +160,18 @@
     }
 }
 
+- (IBAction)returnLetter:(id)sender
+{
+    AnswerButton *letterToReturnButton = (AnswerButton*)sender;
+    
+    if (letterToReturnButton.hidden == NO)
+    {
+        letterToReturnButton.hidden = YES;
+    }
+    UIButton *questionButton = letterToReturnButton.questionButton;
+    questionButton.hidden = NO;
+}
+
 - (IBAction)wordClick:(id)sender
 {
     UIButton *btn = (UIButton*)sender;
@@ -161,28 +185,21 @@
             // Let them finish the puzzle and check for validity at the end
             //return;
         
-        if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectCorrectTile:)])
-        {
-            [self.delegate didSelectCorrectTile:clickedLetter];
-        }
-        if (btn.hidden == NO)
-        {
-            btn.hidden = YES;
-        }
-        /*
-        for (UILabel* wordLabel in wordLabels)
-        {
-            if ([wordLabel.text isEqualToString:clickedLetter] && wordLabel.hidden == YES)
-            {
-                wordLabel.hidden = NO;
-                break;
-            }
-        }
-         */
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectCorrectTile:)])
+    {
+        [self.delegate didSelectCorrectTile:clickedLetter];
+    }
+    if (btn.hidden == NO)
+    {
+        btn.hidden = YES;
+    }
+    ((AnswerButton*)wordLabels[currentLetterIndex]).questionButton = btn;
 
-        ((UILabel*)wordLabels[currentLetterIndex]).text = [NSString stringWithFormat:@"%@", clickedLetter];
-        [wordLabels[currentLetterIndex] setHidden:false];
-        currentLetterIndex++;
+    [((UIButton*)wordLabels[currentLetterIndex]) setTitle:[NSString stringWithFormat:@"%@", clickedLetter] forState:UIControlStateNormal];
+    
+    [wordLabels[currentLetterIndex] setHidden:false];
+    [((UIButton*)wordLabels[currentLetterIndex]).titleLabel setHidden:false];
+    currentLetterIndex++;
         
         /*NSRange rOriginal = [workingWord rangeOfString: clickedLetter];
         if (NSNotFound != rOriginal.location) {
@@ -191,25 +208,25 @@
                         withString:                         @""];
         }*/
         
-        //workingWord = [workingWord stringByReplacingOccurrencesOfString:clickedLetter withString:@""];
-        if (workingWord.length == currentLetterIndex)
+    if (workingWord.length == currentLetterIndex)
+    {
+        // Now check if the words are the same
+        int i = 0;
+        for (UIButton* wordLabel in wordLabels)
         {
-            // Now check if the words are the same
-            int i = 0;
-            for (UILabel* wordLabel in wordLabels)
+            if ([wordLabel.titleLabel.text characterAtIndex:0] != [originalWord characterAtIndex:i])
             {
-                if ([wordLabel.text characterAtIndex:0] != [originalWord characterAtIndex:i])
-                {
-                    if (![wordLabel.text isEqualToString:@" "]) {
-                        NSLog(@"Strings do not match");
-                    }
+                if (![wordLabel.titleLabel.text isEqualToString:@" "]) {
+                    [self.delegate didFailSolvingPuzzle];
+                    return;
                 }
             }
-            if (self.delegate && [self.delegate respondsToSelector:@selector(didFinishSolvingPuzzle)])
-            {
-                [self.delegate didFinishSolvingPuzzle];
-            }
         }
+        if (self.delegate && [self.delegate respondsToSelector:@selector(didFinishSolvingPuzzle)])
+        {
+            [self.delegate didFinishSolvingPuzzle];
+        }
+    }
     /*}
     else
     {
