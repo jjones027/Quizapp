@@ -10,6 +10,8 @@
 @interface AnswerButton : UIButton
 
 @property (weak, nonatomic) UIButton *questionButton;
+@property (weak, nonatomic) UIImageView *bgImage;
+@property int index;
 
 @end
 
@@ -134,11 +136,11 @@
         {
             AnswerButton *answerLabel = [[AnswerButton alloc]initWithFrame:CGRectMake(xValue, yValue,
                                                                             questionGridCellSize.width, questionGridCellSize.height)];
-                                     
+            
+            answerLabel.index = i;
             [answerLabel setTitle:[NSString stringWithFormat:@"%C", [originalWord characterAtIndex:i]] forState:UIControlStateNormal];
             [answerLabel.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:questionGridCellSize.width/2]];
             [answerLabel setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [answerLabel setBackgroundColor:[UIColor clearColor]];
             answerLabel.titleLabel.textAlignment = NSTextAlignmentCenter;
             answerLabel.hidden = YES;
             [answerLabel addTarget:self action:@selector(returnLetter:) forControlEvents:UIControlEventTouchUpInside];
@@ -146,7 +148,11 @@
             UIImageView *bgImage = [[UIImageView alloc] initWithFrame:CGRectMake(xValue, yValue,
                                                                                  questionGridCellSize.width, questionGridCellSize.height)];
             [bgImage setImage:[UIImage imageNamed:@"roundedSquareCell"]];
-            
+            answerLabel.bgImage = bgImage;
+            if (i == 0) {
+                [bgImage setBackgroundColor:[UIColor redColor]];
+            }
+                
             xValue +=questionGridCellSize.width+5;
             if (xValue > viewToAdd.frame.size.width-questionGridCellSize.width)
             {
@@ -170,20 +176,17 @@
     }
     UIButton *questionButton = letterToReturnButton.questionButton;
     questionButton.hidden = NO;
+    [((AnswerButton*)wordLabels[currentLetterIndex]).bgImage setBackgroundColor:[UIColor clearColor]];
+    currentLetterIndex = letterToReturnButton.index;
+    [((AnswerButton*)wordLabels[currentLetterIndex]).bgImage setBackgroundColor:[UIColor redColor]];
+    
 }
 
 - (IBAction)wordClick:(id)sender
 {
     UIButton *btn = (UIButton*)sender;
     NSString *clickedLetter = btn.currentTitle;
-    /*if ([originalWord rangeOfString:[NSString stringWithFormat:@"%@",clickedLetter]].location != NSNotFound)
-    {*/
-        // Check if the clicked letter matches the correct letter for currentLetterIndex
-        //if ([originalWord characterAtIndex:currentLetterIndex] != [clickedLetter characterAtIndex:0]) {
-            //NSLog(@"Not the right letter for this one");
-            //[self.delegate didSelectWrongTile:clickedLetter];
-            // Let them finish the puzzle and check for validity at the end
-            //return;
+
         
     if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectCorrectTile:)])
     {
@@ -197,20 +200,17 @@
 
     [((UIButton*)wordLabels[currentLetterIndex]) setTitle:[NSString stringWithFormat:@"%@", clickedLetter] forState:UIControlStateNormal];
     
+    [((AnswerButton*)wordLabels[currentLetterIndex]).bgImage setBackgroundColor:[UIColor clearColor]];
+    [((AnswerButton*)wordLabels[currentLetterIndex+1]).bgImage setBackgroundColor:[UIColor redColor]];
+
+    
     [wordLabels[currentLetterIndex] setHidden:false];
     [((UIButton*)wordLabels[currentLetterIndex]).titleLabel setHidden:false];
     currentLetterIndex++;
         
-        /*NSRange rOriginal = [workingWord rangeOfString: clickedLetter];
-        if (NSNotFound != rOriginal.location) {
-            workingWord = [workingWord
-                        stringByReplacingCharactersInRange: rOriginal
-                        withString:                         @""];
-        }*/
-        
     if (workingWord.length == currentLetterIndex)
     {
-        // Now check if the words are the same
+        // check if the words are the same
         int i = 0;
         for (UIButton* wordLabel in wordLabels)
         {
@@ -227,14 +227,6 @@
             [self.delegate didFinishSolvingPuzzle];
         }
     }
-    /*}
-    else
-    {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectWrongTile:)])
-        {
-            [self.delegate didSelectWrongTile:clickedLetter];
-        }
-    }*/
 }
 
 @end
