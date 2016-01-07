@@ -201,14 +201,15 @@
     [((UIButton*)wordLabels[currentLetterIndex]) setTitle:[NSString stringWithFormat:@"%@", clickedLetter] forState:UIControlStateNormal];
     
     [((AnswerButton*)wordLabels[currentLetterIndex]).bgImage setBackgroundColor:[UIColor clearColor]];
-    [((AnswerButton*)wordLabels[currentLetterIndex+1]).bgImage setBackgroundColor:[UIColor redColor]];
-
+    if (currentLetterIndex < workingWord.length-1) {
+        [((AnswerButton*)wordLabels[currentLetterIndex+1]).bgImage setBackgroundColor:[UIColor redColor]];
+    }
     
     [wordLabels[currentLetterIndex] setHidden:false];
     [((UIButton*)wordLabels[currentLetterIndex]).titleLabel setHidden:false];
     currentLetterIndex++;
-        
-    if (workingWord.length == currentLetterIndex)
+    
+    if (originalWord.length == currentLetterIndex)
     {
         // check if the words are the same
         int i = 0;
@@ -221,6 +222,7 @@
                     return;
                 }
             }
+            i++;
         }
         if (self.delegate && [self.delegate respondsToSelector:@selector(didFinishSolvingPuzzle)])
         {
