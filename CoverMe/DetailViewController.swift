@@ -93,6 +93,17 @@ class DetailViewController: UIViewController,WordPuzzleDelegate {
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
+    func didFailSolvingPuzzle() {
+        
+        
+        // Display alert when user solves puzzle incorrectly
+        let alertController = UIAlertController(title: "Answer Status", message:
+            "You are incorrect!", preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: {action in }))
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
     
 /*    @IBAction func submitButtonPress(sender: AnyObject) {
         let answer = answerText.text
