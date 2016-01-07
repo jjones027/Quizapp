@@ -15,8 +15,9 @@ class DetailViewController: UIViewController,WordPuzzleDelegate {
     var puzzle: WordPuzzle? = nil
     var score = 0
     var newScore = 0
+    var correctAlbums:[NSString] = []
     
-
+    
     @IBOutlet var categoryLabel: UILabel!
     @IBOutlet weak var albumImage: UIImageView!
     @IBOutlet weak var scoreLabel: UILabel!
@@ -69,6 +70,18 @@ class DetailViewController: UIViewController,WordPuzzleDelegate {
         }
         newScore = score + 10
         defaults.setInteger(newScore, forKey: "score")
+        
+        // Check if list of correct albums has been saved to defaults, then append
+        if let savedArray = defaults.objectForKey("correctAlbums") {
+            correctAlbums = savedArray as! [NSString]
+            correctAlbums.append((subcategory?.name)!)
+        } else {
+            correctAlbums.append((subcategory?.name)!)
+        }
+        
+        // Update the defaults with correct album array and synch
+        print("list of correct albums: \(correctAlbums)")
+        defaults.setObject(correctAlbums, forKey: "correctAlbums")
         defaults.synchronize()
         
         // Display alert when user solves puzzle and navigate back to previous controller
