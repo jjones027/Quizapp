@@ -18,6 +18,7 @@
 @protocol WordPuzzleDelegate <NSObject>
 @required
 - (void)didFinishSolvingPuzzle;
+- (void)didFailSolvingPuzzle;
 
 @optional
 - (void)didSelectCorrectTile:(NSString *)letterSelected;
