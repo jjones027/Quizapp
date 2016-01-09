@@ -16,10 +16,11 @@ class SubCategoryViewController: UICollectionViewController, UICollectionViewDel
     var json: JSON = []
     var category: Category?
     var subcategories = [Subcategory] ()
+    var correctAlbums:[NSString] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -39,6 +40,11 @@ class SubCategoryViewController: UICollectionViewController, UICollectionViewDel
         
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        self.collectionView?.reloadData()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -77,8 +83,17 @@ class SubCategoryViewController: UICollectionViewController, UICollectionViewDel
         //Set cell to the subclassed UICollectionViewCell as AlbumImageCell
         let cell: AlbumImageCell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! AlbumImageCell
         
-        //Format the cell and set the imageview as the cover image
+        // Check if user has guessed album correctly then change opacity 
         cell.backgroundColor = UIColor.whiteColor()
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let savedArray = defaults.objectForKey("correctAlbums") {
+            correctAlbums = savedArray as! [NSString]
+            if correctAlbums.contains(json[self.category!.name!][indexPath.item]["album"].string!) {
+                cell.albumImageView.alpha = 0.3
+            }
+        }
+        
+        //Set the imageview as the cover image
         if let image = json[self.category!.name!][indexPath.item]["Image"].string {
             cell.albumImageView.image = UIImage(named: image)
         }
