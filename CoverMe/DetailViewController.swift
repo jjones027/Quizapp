@@ -21,10 +21,14 @@ class DetailViewController: UIViewController,WordPuzzleDelegate {
     @IBOutlet var categoryLabel: UILabel!
     @IBOutlet weak var albumImage: UIImageView!
     @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var correctAnswerLabel: UILabel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Hide the correct answer label
+        correctAnswerLabel.hidden = true
         
         // Set score label
         let defaults = NSUserDefaults.standardUserDefaults()
@@ -49,11 +53,29 @@ class DetailViewController: UIViewController,WordPuzzleDelegate {
             }
         }
 
-        // Create puzzle object, answer and question grids
-        self.puzzle = WordPuzzle(word: subcategory?.name! , andRandomCharacterToInjectCount: 4)
-        self.puzzle?.delegate = self
-        self.puzzle?.addQuestionButtonsGridWithFrame(CGPointMake(20, 240), showOn: self.view)
-        self.puzzle?.addAnswerGridWithFrame(CGPointMake(20, 380), showOn: self.view)
+        // Create puzzle object, answer and question grids if question isn't solved. If solved display label with answer.
+        if (defaults.valueForKey("correctAlbums") == nil) {
+            print("correct album defaults is nil")
+            defaults.setObject(correctAlbums, forKey: "correctAlbums")
+            defaults.synchronize()
+        }
+        
+        if let savedArray = defaults.objectForKey("correctAlbums") {
+            correctAlbums = savedArray as! [NSString]
+            if correctAlbums.contains(subcategory!.name!) {
+                print("Don't display puzzle grids")
+                correctAnswerLabel.hidden = false
+                correctAnswerLabel.numberOfLines = 0
+                correctAnswerLabel.text = "Album guessed correctly. \n Answer = \(subcategory!.name!)"
+            }
+            else {
+                print("display puzzle grid")
+                self.puzzle = WordPuzzle(word: subcategory?.name! , andRandomCharacterToInjectCount: 4)
+                self.puzzle?.delegate = self
+                self.puzzle?.addQuestionButtonsGridWithFrame(CGPointMake(20, 240), showOn: self.view)
+                self.puzzle?.addAnswerGridWithFrame(CGPointMake(20, 380), showOn: self.view)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
